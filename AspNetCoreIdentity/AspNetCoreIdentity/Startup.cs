@@ -25,6 +25,12 @@ namespace AspNetCoreIdentity
                 .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", true, true)
                 .AddEnvironmentVariables();
 
+            if(hostEnvironment.IsProduction())
+            {
+                //To use user secrets, click in project and select Manage User Secrets
+                builder.AddUserSecrets<Startup>();
+            }
+
             Configuration = builder.Build();            
         }
                 
